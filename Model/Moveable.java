@@ -33,6 +33,7 @@ public abstract class Moveable {
 	public boolean isAlive(){ return alive; }
 	public float getAngle(){ return angle; }
 	public float getSpeed(){ return speed; }
+	public float getRadius(){ return radius; }
 	public int getX(){ return new Float(x).intValue(); }
 	public int getY(){ return new Float(y).intValue(); }
 }
