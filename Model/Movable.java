@@ -2,7 +2,7 @@ package Model;
 
 // Author : Candra Ramsi
 
-public abstract class Moveable {	
+public abstract class Movable {
 	private boolean alive;
 	protected float x;
 	protected float y;
@@ -10,7 +10,7 @@ public abstract class Moveable {
 	protected float angle; // in degree
 	protected float speed; // in pixel
 	
-	public Moveable(int x, int y, int radius, float angle, float speed){
+	public Movable(int x, int y, int radius, float angle, float speed){
 		alive = true;
 		
 		this.x = x;
@@ -26,7 +26,7 @@ public abstract class Moveable {
 		y += Math.sin(tang) * speed * dt;
 	}
 	
-	public abstract void interact(Moveable m);
+	public abstract void interact(Movable m);
 
 	public void forceKill(){ alive = false; }
 	public boolean isDead(){ return !alive; }

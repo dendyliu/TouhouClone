@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 public class Battlefield {
 	public final int width;
 	public final int height;
-	private Vector<Moveable> mList;
+	private Vector<Movable> mList;
 	
-	private static int getDistance(Moveable a, Moveable b){
+	private static int getDistance(Movable a, Movable b){
 		int dx = a.getX() - b.getX();
 		int dy = a.getY() - b.getY();
 		return dx*dx+dy*dy;
@@ -20,21 +20,21 @@ public class Battlefield {
 		mList = new Vector<>();
 	}
 	
-	public void add(Moveable m){
+	public void add(Movable m){
 		mList.add(m);
 	}
 	
 	public void update(float dt){
 		// updates Moveable
-		for( Moveable it : mList ){
+		for( Movable it : mList ){
 			it.update(dt);
 		}
 		
 		// interact when collide
 		for( int i = 0; i < mList.size(); ++ i ){
 			for( int k = i + 1; k < mList.size(); ++ k ){
-				Moveable first = mList.get(i);
-				Moveable second = mList.get(k);
+				Movable first = mList.get(i);
+				Movable second = mList.get(k);
 				if( getDistance(first,second) < first.getRadius() + second.getRadius()){
 					first.interact(second);
 					if( first.isAlive() && second.isAlive() ){
@@ -46,7 +46,7 @@ public class Battlefield {
 		
 		// clear dead stuff
 		mList = mList.stream()
-				.filter(Moveable::isAlive)
+				.filter(Movable::isAlive)
 				.collect(Collectors.toCollection(Vector::new));
 	}
 	

@@ -10,7 +10,7 @@ public class PlayerBullet extends Bullet {
 		super.update(dt);
 	}
 	
-	public void interact(Moveable m){
+	public void interact(Movable m){
 		
 	}
 }

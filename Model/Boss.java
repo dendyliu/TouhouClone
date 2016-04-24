@@ -1,6 +1,6 @@
 package Model;
 
-class Boss extends Moveable {
+class Boss extends Movable {
 	private int health;
 	private float currentT;
 	private float initialX;
@@ -25,7 +25,7 @@ class Boss extends Moveable {
 		return health;
 	}
 	
-	public void interact(Moveable m){
+	public void interact(Movable m){
 		if( m instanceof PlayerBullet ){
 			PlayerBullet b = (PlayerBullet) m;
 			health -= b.damage;
