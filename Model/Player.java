@@ -1,6 +1,6 @@
 package Model;
 
-class Player extends Moveable {
+public class Player extends Moveable {
 	private int health;
 	public Player(int x, int y){
 		super(x,y,10,0,0);

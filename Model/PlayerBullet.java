@@ -1,6 +1,6 @@
 package Model;
 
-class PlayerBullet extends Bullet {
+public class PlayerBullet extends Bullet {
 	
 	public PlayerBullet(int x, int y, int radius, float angle, float speed, int dmg){
 		super(x,y,radius,angle,speed,dmg);

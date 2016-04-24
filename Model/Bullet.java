@@ -1,6 +1,7 @@
 package Model;
 
-class Bullet extends Moveable {
+
+public class Bullet extends Moveable {
 	public final int damage;
 	
 	public Bullet(int x, int y, int radius, float angle, float speed, int dmg){
