@@ -1,11 +1,8 @@
 package Model;
 
-import javax.swing.JPanel;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Vector;
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.util.stream.Collectors;
 
 
