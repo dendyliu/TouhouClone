@@ -18,7 +18,7 @@ public class Player extends Moveable {
 	
 	public void interact(Moveable m){
 		if( m instanceof Bullet ){
-			Bullet b = m;
+			Bullet b = (Bullet) m;
 			health -= b.damage;
 			if( health < 0 )
 				forceKill();

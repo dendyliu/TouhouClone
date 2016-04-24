@@ -1,5 +1,8 @@
 package Model;
 
+import java.util.Vector;
+import java.util.stream.Collectors;
+
 public class Battlefield {
 	public final int width;
 	public final int height;
@@ -28,10 +31,10 @@ public class Battlefield {
 		}
 		
 		// interact when collide
-		for( int i = 0; i < mList.Length; ++ i ){
-			for( int k = i + 1; k < mList.Length; ++ k ){
-				Moveable first = mList[i];
-				Moveable second = mList[k];
+		for( int i = 0; i < mList.size(); ++ i ){
+			for( int k = i + 1; k < mList.size(); ++ k ){
+				Moveable first = mList.get(i);
+				Moveable second = mList.get(k);
 				if( getDistance(first,second) < first.getRadius() + second.getRadius()){
 					first.interact(second);
 					if( first.isAlive() && second.isAlive() ){
@@ -43,7 +46,7 @@ public class Battlefield {
 		
 		// clear dead stuff
 		mList = mList.stream()
-				.filter( it -> it.isAlive() )
+				.filter(Moveable::isAlive)
 				.collect(Collectors.toCollection(Vector::new));
 	}
 	

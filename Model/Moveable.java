@@ -4,11 +4,11 @@ package Model;
 
 public abstract class Moveable {	
 	private boolean alive;
-	private float x;
-	private float y;
-	private float radius;
-	private float angle; // in degree
-	private float speed; // in pixel
+	protected float x;
+	protected float y;
+	protected float radius;
+	protected float angle; // in degree
+	protected float speed; // in pixel
 	
 	public Moveable(int x, int y, int radius, float angle, float speed){
 		alive = true;
@@ -35,4 +35,8 @@ public abstract class Moveable {
 	public float getSpeed(){ return speed; }
 	public int getX(){ return new Float(x).intValue(); }
 	public int getY(){ return new Float(y).intValue(); }
+
+	public float getRadius() {
+		return radius;
+	}
 }
