@@ -77,7 +77,9 @@ public class Battlefield extends JPanel {
         super.paintComponent(g);
         
         g.setColor(Color.white);
-        for( Movable it : mList ){
+		g.drawImage(assetLoader.getBossImage(), 0, 0,85,127,null);
+        
+		for( Movable it : mList ){
             int x = it.getX();
             int y = it.getY();
 
