@@ -7,11 +7,10 @@ public class PlayerBullet extends Bullet {
 	}
 		
 	public void update(float dt){
-		
-		super(dt);
+		super.update(dt);
 	}
 	
-	public void interact(Moveable m){
+	public void interact(Movable m){
 		
 	}
 }

@@ -7,8 +7,8 @@ public class Main {
 		while( true ){
 			try {
 				Thread.sleep(10);
-			}
-			catch(Exception e){
+			} catch(Exception e){
+				e.printStackTrace();
 			}
 			
 			b.update(10);

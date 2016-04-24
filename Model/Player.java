@@ -1,6 +1,6 @@
 package Model;
 
-public class Player extends Moveable {
+public class Player extends Movable {
 	private int health;
 	public Player(int x, int y){
 		super(x,y,10,0,0);
@@ -16,9 +16,9 @@ public class Player extends Moveable {
 		return health;
 	}
 	
-	public void interact(Moveable m){
+	public void interact(Movable m){
 		if( m instanceof Bullet ){
-			Bullet b = m;
+			Bullet b = (Bullet) m;
 			health -= b.damage;
 			if( health < 0 )
 				forceKill();

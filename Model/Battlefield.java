@@ -12,11 +12,12 @@ import java.util.stream.Collectors;
 public class Battlefield extends JPanel {
 	public final int width;
 	public final int height;
-	private Vector<Moveable> mList;
+	private Vector<Movable> mList;
 	private AssetLoader assetLoader;
 	private JFrame frame;
+
 	
-	private static int getDistance(Moveable a, Moveable b){
+	private static int getDistance(Movable a, Movable b){
 		int dx = a.getX() - b.getX();
 		int dy = a.getY() - b.getY();
 		return dx*dx+dy*dy;
@@ -37,21 +38,22 @@ public class Battlefield extends JPanel {
 		frame.add(this, BorderLayout.CENTER);
 	}
 	
-	public void add(Moveable m){
+	public void add(Movable m){
 		mList.add(m);
 	}
 	
 	public void update(float dt){
-		// updates Moveable
-		for( Moveable it : mList ){
+		// updates Movable
+		for( Movable it : mList ){
 			it.update(dt);
 		}
 		
 		// interact when collide
 		for( int i = 0; i < mList.size(); ++ i ){
 			for( int k = i + 1; k < mList.size(); ++ k ){
-				Moveable first = mList.elementAt(i);
-				Moveable second = mList.elementAt(k);
+				Movable first = mList.get(i);
+				Movable second = mList.get(k);
+
 				if( getDistance(first,second) < first.getRadius() + second.getRadius()){
 					first.interact(second);
 					if( first.isAlive() && second.isAlive() ){
@@ -63,7 +65,7 @@ public class Battlefield extends JPanel {
 		
 		// clear dead stuff
 		mList = mList.stream()
-				.filter( it -> it.isAlive() )
+				.filter(Movable::isAlive)
 				.collect(Collectors.toCollection(Vector::new));
 
 		repaint();
@@ -75,7 +77,7 @@ public class Battlefield extends JPanel {
         super.paintComponent(g);
         
         g.setColor(Color.white);
-        for( Moveable it : mList ){
+        for( Movable it : mList ){
             int x = it.getX();
             int y = it.getY();
 
