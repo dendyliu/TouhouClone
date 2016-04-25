@@ -6,12 +6,12 @@ public class Main {
 		Battlefield b = new Battlefield();
 		while( true ){
 			try {
-				Thread.sleep(10);
+				Thread.sleep(20);
 			} catch(Exception e){
 				e.printStackTrace();
 			}
 			
-			b.update(10);
+			b.update(0.02f);
 		}
 		
 	}
