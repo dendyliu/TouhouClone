@@ -1,11 +1,11 @@
 package Model;
 
-class Boss extends Movable {
+public class Boss extends Movable {
 	private int health;
 	private float currentT;
 	private float initialX;
 	private float initialY;
-
+		
 	public Boss(int x, int y, int health){
 		super(x,y,80,0,0);
 		this.health = health;
