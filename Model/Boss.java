@@ -1,6 +1,6 @@
 package Model;
 
-class Boss extends Movable {
+public class Boss extends Movable {
 	private int health;
 	private float currentT;
 	private float initialX;
@@ -15,8 +15,9 @@ class Boss extends Movable {
 	}
 	
 	public void update(float dt){
+		dt /= 1000;
 		currentT += dt;
-		float a = 5;
+		float a = 70;
 		x = (float) ((a*Math.sqrt(2)*Math.cos(currentT)) / (Math.sin(currentT)*Math.sin(currentT) +1) + initialX);
 		y = (float) ((a*Math.sqrt(2)*Math.cos(currentT)*Math.sin(currentT)) / (Math.sin(currentT)*Math.sin(currentT) +1) + initialY);
 	}

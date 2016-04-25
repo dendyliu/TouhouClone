@@ -5,10 +5,10 @@ package Model;
  * @author Rmx
  */
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 
 
 public class AssetLoader {
@@ -17,6 +17,7 @@ public class AssetLoader {
 	private BufferedImage[] bulletImage;
 	
 	public AssetLoader(){
+		//TODO make relative path http://stackoverflow.com/questions/3844307/how-to-read-text-file-from-relative-path-in-a-project
 		String cdir = "E:\\University\\Semester 4\\OOP\\TouhouClone";
 		bulletImage = new BufferedImage[3];
 
