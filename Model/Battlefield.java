@@ -7,7 +7,10 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.util.stream.Collectors;
-
+import java.lang.Error;
+import java.util.Timer;
+import java.util.TimerTask;
+import Model.Event.*;
 
 public class Battlefield extends JPanel {
 	public final int width;
@@ -15,6 +18,7 @@ public class Battlefield extends JPanel {
 	private Vector<Movable> mList;
 	private AssetLoader assetLoader;
 	private JFrame frame;
+	private Timer timer;
 
 	
 	private static int getDistance(Movable a, Movable b){
@@ -28,6 +32,7 @@ public class Battlefield extends JPanel {
 		height = 800;
 		mList = new Vector<>();
 		assetLoader = new AssetLoader();
+		timer = new Timer();
 
 		frame = new JFrame("Touhou Clone");
 		frame.setSize(600,800);
@@ -36,10 +41,31 @@ public class Battlefield extends JPanel {
 
 		frame.setLayout(new BorderLayout());
 		frame.add(this, BorderLayout.CENTER);
+		
+		
+		Boss boss = new Boss(100,100,2000);
+		add( boss );
+		
+		for( int i = 0; i < 10; ++ i ){
+			TimerTask fe = (TimerTask) new FlowerEvent(this,10,i*10.f,100);
+			timer.schedule(fe, 500*i);
+		}
+		
+		
 	}
 	
 	public void add(Movable m){
 		mList.add(m);
+	}
+	
+	public Boss getBoss() throws Error {
+		for( Movable m : mList ){
+			if( m instanceof Boss )
+				return (Boss)m;
+		}
+		
+		
+		throw new Error("no boss");
 	}
 	
 	public void update(float dt){
@@ -77,8 +103,7 @@ public class Battlefield extends JPanel {
         super.paintComponent(g);
         
         g.setColor(Color.white);
-		g.drawImage(assetLoader.getBossImage(), 0, 0,85,127,null);
-        
+		
 		for( Movable it : mList ){
             int x = it.getX();
             int y = it.getY();
