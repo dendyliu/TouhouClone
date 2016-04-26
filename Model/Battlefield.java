@@ -59,14 +59,14 @@ public class Battlefield extends JPanel {
 
 		int t = 0;
 		t += 1000;
-//		for( int i = 0; i < 1; ++ i ){
-//			scheduledPool.schedule(new RainingEvent(this,5,400,0, 300), t, TimeUnit.MILLISECONDS);
-//			t += 4000;
-//		}
-//		for( int i = 0; i < 1; ++ i ){
-//			scheduledPool.schedule(new BoomerangShotgunEvent(this,4,60,60, 4, 250), t, TimeUnit.MILLISECONDS);
-//			t += 5000;
-//		}
+		for (int i = 0; i < 10; ++i) {
+			scheduledPool.schedule(new RainingEvent(this, 10, 50, 0, 300), t, TimeUnit.MILLISECONDS);
+			t += 500;
+		}
+		for (int i = 0; i < 5; ++i) {
+			scheduledPool.schedule(new BoomerangShotgunEvent(this, 4, 60, 60, 4, 250), t, TimeUnit.MILLISECONDS);
+			t += 500;
+		}
 
 		for (int i = 0; i < 1; ++i) {
 			scheduledPool.schedule(new RicochetFlowerEvent(this, 100, 50, 100, 0, getWidth()), t, TimeUnit.MILLISECONDS);
