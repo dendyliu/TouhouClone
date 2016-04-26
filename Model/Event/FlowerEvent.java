@@ -22,7 +22,7 @@ public class FlowerEvent extends Event {
 		Boss boss = b.getBoss();
 		
 		for( float a = startingAngle; a < 360 + startingAngle; a += 360 / spreadCount ){
-			b.add( new Bullet(boss.getX(),boss.getY(),10,a,100,10) );
+			b.add( new Bullet(boss.getX(),boss.getY(),10,a,speed,10) );
 		}
 	}
 }
