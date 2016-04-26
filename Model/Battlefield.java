@@ -1,21 +1,15 @@
 package Model;
 
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.util.Vector;
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.util.stream.Collectors;
-import java.lang.Error;
-import Model.Event.*;
+import Model.Event.FlowerEvent;
+import Model.Event.UpdateEvent;
 
-import java.util.concurrent.ExecutionException;
+import javax.swing.*;
+import java.awt.*;
+import java.util.Iterator;
+import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import java.util.Iterator;
 
 
 public class Battlefield extends JPanel {
@@ -34,13 +28,9 @@ public class Battlefield extends JPanel {
 		return dx*dx+dy*dy;
 	}
 	
-	public boolean isInField(int x, int y){
-		if( x < 0 ) return false;
-		if( y < 0 ) return false;
-		if( x > getWidth() ) return false;
-		if( y > getHeight() ) return false;
-		
-		return true;
+	public boolean isInField(int x, int y) {
+		return x >= 0 && y >= 0 && x <= getWidth() && y <= getHeight();
+
 	}
 	
 	public Battlefield(){
@@ -141,8 +131,9 @@ public class Battlefield extends JPanel {
         super.paintComponent(g);
         
         g.setColor(Color.white);
-		
-		for( Movable it : mList ){
+
+		for (int i = 0; i < mList.size(); ++i) {
+			Movable it = mList.get(i);
             int x = it.getX();
             int y = it.getY();
 
