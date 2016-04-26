@@ -1,10 +1,10 @@
 package Model.Event;
 
-import java.util.TimerTask;
 import Model.Bullet;
 import java.util.Vector;
+import java.lang.Runnable;
 
-public abstract class Event extends TimerTask {
+public abstract class Event implements Runnable  {
 	protected Vector<Bullet> bullets;
 	protected Object self;
 

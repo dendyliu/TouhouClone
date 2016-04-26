@@ -8,9 +8,14 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.util.stream.Collectors;
 import java.lang.Error;
-import java.util.Timer;
-import java.util.TimerTask;
 import Model.Event.*;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
 
 public class Battlefield extends JPanel {
 	public final int width;
@@ -18,7 +23,8 @@ public class Battlefield extends JPanel {
 	private Vector<Movable> mList;
 	private AssetLoader assetLoader;
 	private JFrame frame;
-	private Timer timer;
+	private ScheduledExecutorService scheduledPool;
+
 
 	
 	private static int getDistance(Movable a, Movable b){
@@ -32,8 +38,8 @@ public class Battlefield extends JPanel {
 		height = 800;
 		mList = new Vector<>();
 		assetLoader = new AssetLoader();
-		timer = new Timer();
-
+		scheduledPool = Executors.newScheduledThreadPool(1);
+		
 		frame = new JFrame("Touhou Clone");
 		frame.setSize(600,800);
 		frame.setResizable(false);
@@ -46,12 +52,24 @@ public class Battlefield extends JPanel {
 		Boss boss = new Boss(100,100,2000);
 		add( boss );
 		
+		scheduledPool.scheduleWithFixedDelay(new UpdateEvent(this,0.02f), 0, 20, TimeUnit.MILLISECONDS);
+		
+		int t = 0;
 		for( int i = 0; i < 10; ++ i ){
-			TimerTask fe = (TimerTask) new FlowerEvent(this,10,i*10.f,100);
-			timer.schedule(fe, 500*i);
+			t += 200;
+			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,1500), t, TimeUnit.MILLISECONDS);
 		}
 		
+
+		for( int i = 0; i < 10; ++ i ){
+			t += 200;
+			scheduledPool.schedule(new FlowerEvent(this,10,-i*10.f,1500), t, TimeUnit.MILLISECONDS);
+		}
 		
+		for( int i = 0; i < 10; ++ i ){
+			t += 200;
+			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,1500), t, TimeUnit.MILLISECONDS);
+		}
 	}
 	
 	public void add(Movable m){
@@ -90,11 +108,11 @@ public class Battlefield extends JPanel {
 		}
 		
 		// clear dead stuff
+		/*
 		mList = mList.stream()
 				.filter(Movable::isAlive)
 				.collect(Collectors.toCollection(Vector::new));
-
-		repaint();
+		*/
 	}
 	
 
