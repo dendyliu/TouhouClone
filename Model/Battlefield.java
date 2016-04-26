@@ -59,7 +59,7 @@ public class Battlefield extends JPanel {
 		frame.add(this, BorderLayout.CENTER);
 		
 		
-		Boss boss = new Boss(200,500,2000);
+		Boss boss = new Boss(200,200,2000);
 		add( boss );
 		
 		scheduledPool.scheduleWithFixedDelay(new UpdateEvent(this,0.02f), 30, 20, TimeUnit.MILLISECONDS);
@@ -84,7 +84,8 @@ public class Battlefield extends JPanel {
 		t += 1000;
 		
 		for( int i = 0; i < 10; ++ i ){
-			scheduledPool.schedule(new FlowerEvent(this,10 + i,0.f,100 + i * 20), t, TimeUnit.MILLISECONDS);
+			scheduledPool.schedule(new FlowerEvent(this,10,0.f,100 + i * 10), t, TimeUnit.MILLISECONDS);
+			t += 100;
 		}
 	}
 	
