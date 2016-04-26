@@ -191,8 +191,10 @@ public class Battlefield extends JPanel {
 
             if( it instanceof Boss )
                 g.drawImage(assetLoader.getBossImage(), x, y,85,127,null);
-            else if( it instanceof Player )
-                g.drawImage(assetLoader.getPlayerImage(), x, y,65,125,null);
+			else if (it instanceof Player) {
+				if (((Player) it).isVisible())
+					g.drawImage(assetLoader.getPlayerImage(), x, y, 65, 125, null);
+			}
 			else if (it instanceof EnemyBullet)
 				g.drawImage(assetLoader.getBulletImage(0), x, y, null );
 			else if (it instanceof PlayerBullet)
