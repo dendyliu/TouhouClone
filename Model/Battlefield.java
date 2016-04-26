@@ -67,23 +67,24 @@ public class Battlefield extends JPanel {
 		int t = 0;
 		for( int i = 0; i < 10; ++ i ){
 			t += 200;
-			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,1500), t, TimeUnit.MILLISECONDS);
+			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,100), t, TimeUnit.MILLISECONDS);
 		}
 		
 
 		for( int i = 0; i < 10; ++ i ){
 			t += 200;
-			scheduledPool.schedule(new FlowerEvent(this,10,-i*10.f,1500), t, TimeUnit.MILLISECONDS);
+			scheduledPool.schedule(new FlowerEvent(this,10,-i*10.f,100), t, TimeUnit.MILLISECONDS);
 		}
 		
 		for( int i = 0; i < 10; ++ i ){
 			t += 200;
-			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,1500), t, TimeUnit.MILLISECONDS);
+			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,100), t, TimeUnit.MILLISECONDS);
 		}
 
+		t += 1000;
+		
 		for( int i = 0; i < 10; ++ i ){
-			t += 200;
-			scheduledPool.schedule(new FlowerEvent(this,10 + i,0.f,1200 - i * 100), t, TimeUnit.MILLISECONDS);
+			scheduledPool.schedule(new FlowerEvent(this,10 + i,0.f,100 + i * 20), t, TimeUnit.MILLISECONDS);
 		}
 	}
 	
