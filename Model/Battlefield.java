@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.Iterator;
 
 
 public class Battlefield extends JPanel {
@@ -33,6 +34,15 @@ public class Battlefield extends JPanel {
 		return dx*dx+dy*dy;
 	}
 	
+	public boolean isInField(int x, int y){
+		if( x < 0 ) return false;
+		if( y < 0 ) return false;
+		if( x > getWidth() ) return false;
+		if( y > getHeight() ) return false;
+		
+		return true;
+	}
+	
 	public Battlefield(){
 		width = 600;
 		height = 800;
@@ -49,10 +59,10 @@ public class Battlefield extends JPanel {
 		frame.add(this, BorderLayout.CENTER);
 		
 		
-		Boss boss = new Boss(100,100,2000);
+		Boss boss = new Boss(200,500,2000);
 		add( boss );
 		
-		scheduledPool.scheduleWithFixedDelay(new UpdateEvent(this,0.02f), 0, 20, TimeUnit.MILLISECONDS);
+		scheduledPool.scheduleWithFixedDelay(new UpdateEvent(this,0.02f), 30, 20, TimeUnit.MILLISECONDS);
 		
 		int t = 0;
 		for( int i = 0; i < 10; ++ i ){
@@ -69,6 +79,11 @@ public class Battlefield extends JPanel {
 		for( int i = 0; i < 10; ++ i ){
 			t += 200;
 			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,1500), t, TimeUnit.MILLISECONDS);
+		}
+
+		for( int i = 0; i < 10; ++ i ){
+			t += 200;
+			scheduledPool.schedule(new FlowerEvent(this,10 + i,0.f,1200 - i * 100), t, TimeUnit.MILLISECONDS);
 		}
 	}
 	
@@ -88,9 +103,11 @@ public class Battlefield extends JPanel {
 	
 	public void update(float dt){
 		// updates Movable
-		for( Movable it : mList ){
-			it.update(dt);
+		for( Iterator<Movable> itr = mList.iterator(); itr.hasNext(); ){
+			Movable m = itr.next();
+			m.update(dt);
 		}
+
 		
 		// interact when collide
 		for( int i = 0; i < mList.size(); ++ i ){
@@ -108,11 +125,12 @@ public class Battlefield extends JPanel {
 		}
 		
 		// clear dead stuff
-		/*
-		mList = mList.stream()
-				.filter(Movable::isAlive)
-				.collect(Collectors.toCollection(Vector::new));
-		*/
+		for( Iterator<Movable> itr = mList.iterator(); itr.hasNext(); ){
+			Movable m = itr.next();
+			if( m.isDead() || !isInField(m.getX(),m.getY()) ){
+				itr.remove();
+			}
+		}
 	}
 	
 
