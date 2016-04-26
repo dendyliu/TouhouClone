@@ -5,7 +5,7 @@ public class Boss extends Movable {
 	private float currentT;
 	private float initialX;
 	private float initialY;
-
+		
 	public Boss(int x, int y, int health){
 		super(x,y,80,0,0);
 		this.health = health;
@@ -15,11 +15,10 @@ public class Boss extends Movable {
 	}
 	
 	public void update(float dt){
-		dt /= 1000;
 		currentT += dt;
-		float a = 70;
+		float a = 100;
 		x = (float) ((a*Math.sqrt(2)*Math.cos(currentT)) / (Math.sin(currentT)*Math.sin(currentT) +1) + initialX);
-		y = (float) ((a*Math.sqrt(2)*Math.cos(currentT)*Math.sin(currentT)) / (Math.sin(currentT)*Math.sin(currentT) +1) + initialY);
+		y = (float) ((a*Math.sqrt(2)*Math.cos(currentT)*Math.sin(currentT)) / (Math.sin(currentT)*Math.sin(currentT) +1)) + initialY;
 	}
 	
 	public int getHealth(){

@@ -10,7 +10,7 @@ public class Bullet extends Movable {
 	}
 		
 	public void update(float dt){
-		
+		super.update(dt);
 	}
 	
 	public void interact(Movable m){
