@@ -22,7 +22,6 @@ public class AssetLoader {
 		bulletImage = new BufferedImage[3];
 
 		try {
-			System.out.println(url.getPath());
 			bossImage = ImageIO.read(new File(url.getPath()+"/Boss.png"));
 			playerImage = ImageIO.read(new File(url.getPath()+"/Player.png"));
 			bulletImage[0] = ImageIO.read(new File(url.getPath()+"/Bullet1.png"));

@@ -3,19 +3,18 @@ package Model;
 import java.util.Vector;
 
 public abstract class Pattern {
-	private int lifetimeInMillis = 20000;
 	protected int defaultRadius = 5;
 	protected float defaultSpeed = 5;
 	protected int defaultDmg = 50;
+	protected Vector<EnemyBullet> enemyBullets;
+	private int lifetimeInMillis = 20000;
 
-	public Vector<Bullet> getBullets() {
-		return bullets;
+	public Pattern(){
+		enemyBullets = new Vector<>();
 	}
 
-	protected Vector<Bullet> bullets;
-	
-	public Pattern(){
-		bullets = new Vector<>();
+	public Vector<EnemyBullet> getEnemyBullets() {
+		return enemyBullets;
 	}
 	
 	public abstract void startAt(float x, float y);
@@ -26,7 +25,7 @@ public abstract class Pattern {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		for( Bullet it : bullets ){
+		for (EnemyBullet it : enemyBullets) {
 			it.forceKill();
 		}
 	}

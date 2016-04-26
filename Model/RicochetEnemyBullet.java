@@ -1,0 +1,47 @@
+package Model;
+
+/**
+ * Created by anthony on 4/27/16.
+ */
+public class RicochetEnemyBullet extends EnemyBullet {
+    private final int barrierRadius = 5;
+    private int leftBarrier;
+    private int rightBarrier;
+    private int bounceLimit = 2;
+
+    public RicochetEnemyBullet(int x, int y, int radius, float angle, float speed, int dmg, int leftBarrier, int rightBarrier) {
+        super(x, y, radius, angle, speed, dmg);
+        this.leftBarrier = leftBarrier;
+        this.rightBarrier = rightBarrier;
+    }
+
+    @Override
+    public void update(float dt) {
+        if (angle < 0)
+            angle += 360;
+        if (angle > 360)
+            angle -= 360;
+
+        if (leftBarrier + barrierRadius > x) {
+            if (bounceLimit > 0) {
+                bounceLimit--;
+                if (angle < 180 && angle > 90) {
+                    angle = 180 - angle;
+                } else if (angle > 180 && angle < 270) {
+                    angle = 360 - angle + 180;
+                }
+            }
+        }
+        if (rightBarrier - barrierRadius < x) {
+            if (bounceLimit > 0) {
+                bounceLimit--;
+                if (angle < 90 && angle > 0) {
+                    angle += 180 - 2 * angle;
+                } else if (angle > 270 && angle < 360) {
+                    angle = 360 - angle + 180;
+                }
+            }
+        }
+        super.update(dt);
+    }
+}
