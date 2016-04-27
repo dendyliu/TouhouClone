@@ -13,9 +13,9 @@ public class Player extends Movable implements KeyListener {
 	private boolean onFiringState;
 	private boolean justDamaged;
 	private boolean visible;
-
+	
 	public Player(int x, int y){
-		super(x, y, 10, 0, 10);
+		super(x, y, 10, 0, 100);
 
 		health = 100;
 		currentKeyPressed = new HashSet<>();
@@ -35,16 +35,16 @@ public class Player extends Movable implements KeyListener {
 	public void update(float dt){
 		onFiringState = currentKeyPressed.contains(' ');
 		if (currentKeyPressed.contains('w')) {
-			y -= speed;
+			y -= speed * dt;
 		}
 		if (currentKeyPressed.contains('a')) {
-			x -= speed;
+			x -= speed * dt;
 		}
 		if (currentKeyPressed.contains('s')) {
-			y += speed;
+			y += speed * dt;
 		}
 		if (currentKeyPressed.contains('d')) {
-			x += speed;
+			x += speed * dt;
 		}
 	}
 	
