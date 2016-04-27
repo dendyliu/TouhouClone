@@ -28,9 +28,11 @@ public class Boss extends Movable {
 	}
 	
 	public void interact(Movable m){
-		if( m instanceof PlayerBullet ){
+		if (m instanceof PlayerBullet) {
 			PlayerBullet b = (PlayerBullet) m;
 			health -= b.damage;
+			b.forceKill();
+			System.out.println(health);
 		}
 	}
 }
