@@ -101,15 +101,5 @@ public class Main {
 			startGame();
 			initBullets();
 		});
-
-		
-		/*
-		while( true ){
-			
-			battlefield.update(0.02f);
-			battlefield.repaint();
-			try { Thread.sleep(20); } catch(Exception ex){}
-			
-		}*/
 	}
 }
