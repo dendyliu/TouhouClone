@@ -1,6 +1,8 @@
 
-import Model.Battlefield;
 import Model.Event.*;
+import javax.swing.*;
+import java.awt.*;
+import Model.*;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -9,7 +11,28 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 	public static void main(String[] args){
 		java.awt.EventQueue.invokeLater(() -> {
-			Battlefield b = new Battlefield();
+			JFrame frame = new JFrame("Touhou Clone");
+			frame.setSize(600, 800);
+			frame.setResizable(false);
+			frame.setVisible(true);
+
+			
+
+			
+			Battlefield b = new Battlefield(frame);
+			frame.setLayout(new BorderLayout());
+			frame.add(b, BorderLayout.CENTER);
+			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+			
+			Boss boss = new Boss(400, 200, 2000);
+			b.add(boss);
+			Player player = new Player(200, 500);
+			b.add(player);
+			Runnable task2 = () -> frame.addKeyListener(player);
+
+			new Thread(task2).start();
+			
 			ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(1);
 			scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(b, 200), 30, 20, TimeUnit.MILLISECONDS);
 			int t = 0;

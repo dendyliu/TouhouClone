@@ -16,31 +16,13 @@ public class Battlefield extends JPanel {
 	private Vector<Movable> mList;
 	private AssetLoader assetLoader;
 	private JFrame frame;
-	public Battlefield() {
-
-		width = 600;
-		height = 800;
+	public Battlefield(JFrame frame) {
+		width = frame.getWidth();
+		height = frame.getHeight();
+		
 		mList = new Vector<>();
 		assetLoader = new AssetLoader();
 
-		frame = new JFrame("Touhou Clone");
-		frame.setSize(600, 800);
-		frame.setResizable(false);
-		frame.setVisible(true);
-
-		frame.setLayout(new BorderLayout());
-		frame.add(this, BorderLayout.CENTER);
-
-
-		Boss boss = new Boss(200, 200, 2000);
-		add(boss);
-		Player player = new Player(200, 500);
-		add(player);
-		Runnable task2 = () -> frame.addKeyListener(player);
-
-		new Thread(task2).start();
-
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		Battlefield b = this;
 		Timer timer = new Timer(20, e -> new UpdateEvent(b, 0.02f).run());
