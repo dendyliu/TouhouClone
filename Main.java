@@ -3,18 +3,21 @@ import Model.Battlefield;
 import Model.Boss;
 import Model.Event.*;
 import Model.Player;
+import MainMenu.Menu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.awt.event.MouseListener;
 
 public class Main {
 	static JFrame frame;
 	static Battlefield battlefield;
 	static ScheduledExecutorService scheduledPool;
-	
+
 	public static void startGame(){
 		frame = new JFrame("Touhou Clone");
 		
@@ -34,7 +37,7 @@ public class Main {
 		
 		Runnable task2 = () -> frame.addKeyListener(player);
 		new Thread(task2).start();
-			
+
 		scheduledPool = Executors.newScheduledThreadPool(1);
 		
 		scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(battlefield, 0.2f), 30, 20, TimeUnit.MILLISECONDS);
@@ -95,9 +98,36 @@ public class Main {
 	}
 	
 	public static void main(String[] args){
-		java.awt.EventQueue.invokeLater(() -> {
-			startGame();
-			initBullets();
-		});
+		Menu menu = new Menu(
+                    new MouseListener(){
+			public void mouseClicked(MouseEvent me) {
+				java.awt.EventQueue.invokeLater(() -> {
+					startGame();
+					initBullets();
+				});
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent me) {
+
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent me) {
+
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent me) {
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent me) {
+
+                        }                    
+                    }
+		);
+
 	}
 }

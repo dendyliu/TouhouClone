@@ -4,6 +4,10 @@ import Model.Battlefield;
 import Model.Boss;
 import Model.SpiralEnemyBullet;
 
+/**
+ * Created by Anthony on 4/26/16.
+ */
+
 public class SpiralEvent extends Event {
 
     private final int spreadCount;

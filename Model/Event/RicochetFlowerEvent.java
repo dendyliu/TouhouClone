@@ -4,6 +4,11 @@ import Model.Battlefield;
 import Model.Boss;
 import Model.RicochetEnemyBullet;
 
+
+/**
+ * Created by Anthony on 4/26/16.
+ */
+
 public class RicochetFlowerEvent extends Event {
 
     private final int spreadCount;

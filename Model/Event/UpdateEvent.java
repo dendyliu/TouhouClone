@@ -1,6 +1,9 @@
 package Model.Event;
 
 import Model.Battlefield;
+/**
+ * Created by Anthony on 4/26/16.
+ */
 
 public class UpdateEvent extends Event {
 	private float timestep;

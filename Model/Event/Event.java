@@ -1,8 +1,12 @@
 package Model.Event;
 
 import Model.EnemyBullet;
-
 import java.util.Vector;
+
+/**
+ * Created by Candra Ramsi on 4/24/16.
+ */
+
 
 public abstract class Event implements Runnable  {
 	protected Vector<EnemyBullet> enemyBullets;

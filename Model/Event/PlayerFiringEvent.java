@@ -3,8 +3,12 @@ package Model.Event;
 import Model.Battlefield;
 import Model.Player;
 import Model.PlayerBullet;
-
 import java.util.Date;
+
+/**
+ * Created by Anthony on 4/26/16.
+ */
+
 
 public class PlayerFiringEvent extends Event {
     private long cooldown; //milliseconds

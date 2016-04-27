@@ -1,13 +1,14 @@
 package Model;
 
 public class Boss extends Movable {
+        public static final int RADIUS = 60;
 	private int health;
 	private float currentT;
 	private float initialX;
 	private float initialY;
 		
 	public Boss(int x, int y, int health){
-		super(x,y,60 ,0,0);
+		super(x,y,RADIUS,0,0);
 		this.health = health;
 		currentT = 0;
 		initialX = x;

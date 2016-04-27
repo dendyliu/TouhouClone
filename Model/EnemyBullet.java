@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Created by Candra Ramsi on 4/24/16.
+ */
 
 public class EnemyBullet extends Bullet {
 
@@ -7,10 +10,12 @@ public class EnemyBullet extends Bullet {
         super(x, y, radius, angle, speed, dmg);
     }
 
+    @Override
     public void update(float dt) {
         super.update(dt);
     }
 
+    @Override
     public void interact(Movable m) {
 
     }
