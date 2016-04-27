@@ -155,9 +155,12 @@ public class Battlefield extends JPanel {
 		
 		// interact when collide
 		for( int i = 0; i < mList.size(); ++ i ){
+			Movable first = mList.get(i);
+			if( first.isDead() ) continue;
+			
 			for( int k = i + 1; k < mList.size(); ++ k ){
-				Movable first = mList.get(i);
 				Movable second = mList.get(k);
+				if( second.isDead() ) continue;
 
 				if( getDistance(first,second) < first.getRadius() + second.getRadius()){
 					first.interact(second);
