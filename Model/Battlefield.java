@@ -41,6 +41,7 @@ public class Battlefield extends JPanel {
 		return dx*dx+dy*dy;
 	}
 
+		
 	@Override
 	public int getWidth() {
 		return width;
@@ -51,6 +52,7 @@ public class Battlefield extends JPanel {
 
 	}
 	
+		
 	public void add(Movable m){
 		if( m instanceof Boss )
 			boss = (Boss) m;
@@ -74,7 +76,15 @@ public class Battlefield extends JPanel {
 		return player;
 	}
 	
+	public boolean isGameOver(){
+		return getPlayer().isDead() || getBoss().isDead();
+	}
+
 	public synchronized void update(float dt){
+		if( isGameOver() ){
+ 			return;	
+		}
+		
 		// updates Movable
 		for (int i = 0; i < mList.size(); ++i) {
 			Movable it = mList.get(i);
