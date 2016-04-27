@@ -7,7 +7,7 @@ public class Boss extends Movable {
 	private float initialY;
 		
 	public Boss(int x, int y, int health){
-		super(x,y,80,0,0);
+		super(x,y,100,0,0);
 		this.health = health;
 		currentT = 0;
 		initialX = x;
