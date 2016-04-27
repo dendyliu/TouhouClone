@@ -6,16 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.Vector;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 
 public class Battlefield extends JPanel {
 	public final int width;
 	public final int height;
-	private Vector<Movable> mList;
+	private java.util.List<Movable> mList;
 	private AssetLoader assetLoader;
-	private JFrame frame;
 	private Boss boss;
 	private Player player;
 	
