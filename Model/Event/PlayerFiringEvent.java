@@ -31,12 +31,7 @@ public class PlayerFiringEvent extends Event {
 
                 onCooldown = true;
                 ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(1);
-                scheduledPool.schedule(new Runnable() {
-                    @Override
-                    public void run() {
-                        onCooldown = false;
-                    }
-                }, 200, TimeUnit.MILLISECONDS);
+                scheduledPool.schedule(() -> onCooldown = false, cooldown, TimeUnit.MILLISECONDS);
 
             }
         }
