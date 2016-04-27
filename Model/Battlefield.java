@@ -162,7 +162,7 @@ public class Battlefield extends JPanel {
 				Movable second = mList.get(k);
 				if( second.isDead() ) continue;
 
-				if( getDistance(first,second) < first.getRadius() + second.getRadius()){
+				if( Math.sqrt(getDistance(first,second)) < first.getRadius() + second.getRadius()){
 					first.interact(second);
 					if( first.isAlive() && second.isAlive() ){
 						second.interact(first);
@@ -201,20 +201,20 @@ public class Battlefield extends JPanel {
 				if (p.isVisible()){
 					int rad = new Float(p.getRadius()).intValue();
 					g.drawImage(assetLoader.getPlayerImage(), x - 32, y - 64, 65, 125, null);
-					g.drawImage( assetLoader.getBulletImage(2), x - rad, y - rad,rad*2,rad*2,null );
+					g.drawImage( assetLoader.getBulletImage(2), x - rad*3/2, y - rad*3/2,rad*3,rad*3,null );
 				}
 			}
 			else if (it instanceof EnemyBullet){
 				Bullet b = (Bullet) it;
 				int rad = new Float(b.getRadius()).intValue();
 				
-                g.drawImage( assetLoader.getBulletImage(0), x - rad, y - rad,rad*2,rad*2,null );
+                g.drawImage( assetLoader.getBulletImage(0), x - rad*3/2, y - rad*3/2,rad*6/2,rad*6/2,null );
 			}
 			else if (it instanceof PlayerBullet){
 				Bullet b = (Bullet) it;
 				int rad = new Float(b.getRadius()).intValue();
 				
-                g.drawImage( assetLoader.getBulletImage(1), x - rad, y - rad,rad*2,rad*2,null );
+                g.drawImage( assetLoader.getBulletImage(1), x - rad*3/2, y - rad*3/2,rad*6/2,rad*6/2,null );
 			}
 		}
     }

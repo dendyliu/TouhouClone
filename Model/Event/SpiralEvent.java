@@ -27,7 +27,7 @@ public class SpiralEvent extends Event {
 
         new Thread(() -> {
             for (float a = startingAngle; a < 360 * numberOfRotation + startingAngle; a += 360 * numberOfRotation / spreadCount) {
-                b.add(new SpiralEnemyBullet(boss.getX(), boss.getY(), 10, a, speed, 10));
+                b.add(new SpiralEnemyBullet(boss.getX(), boss.getY(), 7, a, speed, 10));
                 try {
                     Thread.sleep(delay);
                 } catch (InterruptedException e) {

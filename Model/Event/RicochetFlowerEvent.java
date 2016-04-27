@@ -26,7 +26,7 @@ public class RicochetFlowerEvent extends Event {
         Boss boss = b.getBoss();
 
         for (float a = startingAngle; a < 360 + startingAngle; a += 360 / spreadCount) {
-            b.add(new RicochetEnemyBullet(boss.getX(), boss.getY(), 10, a, speed, 10, leftBarrier, rightBarrier));
+            b.add(new RicochetEnemyBullet(boss.getX(), boss.getY(), 7, a, speed, 10, leftBarrier, rightBarrier));
         }
     }
 }

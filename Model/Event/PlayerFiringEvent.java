@@ -6,6 +6,9 @@ import Model.PlayerBullet;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.Executors;
 
 public class PlayerFiringEvent extends Event {
     private long cooldown; //milliseconds
@@ -23,18 +26,19 @@ public class PlayerFiringEvent extends Event {
 
         if (player.isOnFiringState()) {
             if (!onCooldown) {
-                b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 100));
-                b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 100));
-                b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 100));
+                b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 5));
+                b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 5));
+                b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 5));
 
                 onCooldown = true;
-                Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
+
+				ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                scheduler.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         onCooldown = false;
                     }
-                }, cooldown);
+                }, cooldown, TimeUnit.MILLISECONDS);
             }
         }
     }

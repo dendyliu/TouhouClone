@@ -27,7 +27,7 @@ public class ShotgunEvent extends Event {
 
         for (float layerSpeed = 0.5f * speed; layerSpeed < 1.5 * speed; layerSpeed += speed / layerCount) {
             for (float a = directionAngle; a < widthAngle + directionAngle; a += widthAngle / spreadCount) {
-                b.add(new EnemyBullet(boss.getX(), boss.getY(), 10, a, layerSpeed, 10));
+                b.add(new EnemyBullet(boss.getX(), boss.getY(), 7, a, layerSpeed, 10));
             }
         }
     }

@@ -27,7 +27,7 @@ public class RainingEvent extends Event {
             for (int i = 0; i < count; ++i) {
                 float rnd1 = (float) (Math.random() * 100 - 50);
                 float rnd2 = (float) (Math.random() * 100 - 50);
-                b.add(new AcceleratingEnemyBullet(boss.getX() + Math.round(rnd1), boss.getY() + Math.round(rnd2), 10, 90, speed, 10, acceleration));
+                b.add(new AcceleratingEnemyBullet(boss.getX() + Math.round(rnd1), boss.getY() + Math.round(rnd2), 7, 90, speed, 10, acceleration));
                 try {
                     Thread.sleep(delay);
                 } catch (InterruptedException e) {

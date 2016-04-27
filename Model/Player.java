@@ -15,7 +15,7 @@ public class Player extends Movable implements KeyListener {
 	private boolean visible;
 	
 	public Player(int x, int y){
-		super(x, y, 10, 0, 100);
+		super(x, y, 5, 0, 100);
 
 		health = 100;
 		currentKeyPressed = new HashSet<>();
@@ -72,7 +72,7 @@ public class Player extends Movable implements KeyListener {
 						justDamaged = false;
 						visible = true;
 					}
-				}, 3000);
+				}, 1000);
 
 				EnemyBullet b = (EnemyBullet) m;
 				health -= b.damage;
