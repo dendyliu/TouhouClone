@@ -1,8 +1,9 @@
-package Model.Event;
+package Controller.Event;
 
-import Model.Battlefield;
 import Model.Player;
 import Model.PlayerBullet;
+import View.Battlefield;
+
 import java.util.Date;
 
 /**

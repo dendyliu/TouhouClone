@@ -1,6 +1,6 @@
-package Model.Event;
+package Controller.Event;
 
-import Model.Battlefield;
+import View.Battlefield;
 /**
  * Created by Anthony on 4/26/16.
  */

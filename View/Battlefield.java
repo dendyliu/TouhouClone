@@ -1,6 +1,7 @@
-package Model;
+package View;
 
-import Model.Event.UpdateEvent;
+import Controller.Event.UpdateEvent;
+import Model.*;
 
 import javax.swing.*;
 import java.awt.*;

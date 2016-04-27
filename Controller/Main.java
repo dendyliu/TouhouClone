@@ -1,17 +1,16 @@
+package Controller;
 
-import Model.Battlefield;
+import Controller.Event.*;
 import Model.Boss;
-import Model.Event.*;
 import Model.Player;
-import MainMenu.Menu;
+import View.Battlefield;
+import View.MainMenu.Menu;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.awt.event.MouseListener;
 
 public class Main {
 	static JFrame frame;
@@ -98,36 +97,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args){
-		Menu menu = new Menu(
-                    new MouseListener(){
-			public void mouseClicked(MouseEvent me) {
-				java.awt.EventQueue.invokeLater(() -> {
-					startGame();
-					initBullets();
-				});
-                        }
-
-                        @Override
-                        public void mousePressed(MouseEvent me) {
-
-                        }
-
-                        @Override
-                        public void mouseReleased(MouseEvent me) {
-
-                        }
-
-                        @Override
-                        public void mouseEntered(MouseEvent me) {
-
-                        }
-
-                        @Override
-                        public void mouseExited(MouseEvent me) {
-
-                        }                    
-                    }
-		);
+		Menu menu = new Menu();
 
 	}
 }

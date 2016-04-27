@@ -1,8 +1,8 @@
-package Model.Event;
+package Controller.Event;
 
-import Model.Battlefield;
 import Model.Boss;
 import Model.RicochetEnemyBullet;
+import View.Battlefield;
 
 
 /**

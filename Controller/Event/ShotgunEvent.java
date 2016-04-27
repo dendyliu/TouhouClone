@@ -1,8 +1,8 @@
-package Model.Event;
+package Controller.Event;
 
-import Model.Battlefield;
 import Model.Boss;
 import Model.EnemyBullet;
+import View.Battlefield;
 
 /**
  * Created by Anthony on 4/26/16.
@@ -33,7 +33,6 @@ public class ShotgunEvent extends Event {
         angle = (float) Math.toDegrees(angle);
         angle += 180;
         angle -= widthAngle / 2;
-        System.out.println(angle);
 
         for (float layerSpeed = 0.5f * speed; layerSpeed < 1.5 * speed; layerSpeed += speed / layerCount) {
             for (float a = angle; a < widthAngle + angle; a += widthAngle / spreadCount) {

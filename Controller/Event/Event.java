@@ -1,6 +1,7 @@
-package Model.Event;
+package Controller.Event;
 
 import Model.EnemyBullet;
+
 import java.util.Vector;
 
 /**

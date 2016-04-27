@@ -1,8 +1,8 @@
-package Model.Event;
+package Controller.Event;
 
-import Model.Battlefield;
 import Model.Boss;
 import Model.EnemyBullet;
+import View.Battlefield;
 
 /**
  * Created by Candra Ramsi on 4/25/16.
