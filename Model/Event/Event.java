@@ -1,11 +1,11 @@
 package Model.Event;
 
-import Model.Bullet;
+import Model.EnemyBullet;
+
 import java.util.Vector;
-import java.lang.Runnable;
 
 public abstract class Event implements Runnable  {
-	protected Vector<Bullet> bullets;
+	protected Vector<EnemyBullet> enemyBullets;
 	protected Object self;
 
 	public Event(Object s){
@@ -13,7 +13,7 @@ public abstract class Event implements Runnable  {
 	}
 	
 	public void clean(){
-		for( Bullet b : bullets ){
+		for (EnemyBullet b : enemyBullets) {
 			b.forceKill();
 		}
 	}

@@ -1,10 +1,12 @@
 
-import Model.*;
-import java.util.Date;
+import Model.Battlefield;
 
 public class Main {
 	public static void main(String[] args){
-		Battlefield b = new Battlefield();
+		java.awt.EventQueue.invokeLater(() -> {
+			Battlefield b = new Battlefield();
+		});
+
 		
 		/*
 		while( true ){

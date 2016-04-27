@@ -5,10 +5,11 @@ package Model;
  * @author Rmx
  */
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.net.URL;
 
 
 public class AssetLoader {
@@ -17,15 +18,15 @@ public class AssetLoader {
 	private BufferedImage[] bulletImage;
 	
 	public AssetLoader(){
-		String cdir = "E:\\University\\Semester 4\\OOP\\TouhouClone";
+		URL url = getClass().getResource("../assets"); //relative path
 		bulletImage = new BufferedImage[3];
 
 		try {
-			bossImage = ImageIO.read(new File(cdir+"\\assets\\Boss.png"));
-			playerImage = ImageIO.read(new File(cdir+"\\assets\\Player.png"));
-			bulletImage[0] = ImageIO.read(new File(cdir+"\\assets\\Bullet1.png"));
-			bulletImage[1] = ImageIO.read(new File(cdir+"\\assets\\Bullet2.png"));
-			bulletImage[2] = ImageIO.read(new File(cdir+"\\assets\\Bullet3.png"));
+			bossImage = ImageIO.read(new File(url.getPath()+"/Boss.png"));
+			playerImage = ImageIO.read(new File(url.getPath()+"/Player.png"));
+			bulletImage[0] = ImageIO.read(new File(url.getPath()+"/Bullet1.png"));
+			bulletImage[1] = ImageIO.read(new File(url.getPath()+"/Bullet2.png"));
+			bulletImage[2] = ImageIO.read(new File(url.getPath()+"/Bullet3.png"));
 			
 			
 		} catch (IOException ex) {
