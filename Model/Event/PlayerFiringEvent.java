@@ -23,7 +23,9 @@ public class PlayerFiringEvent extends Event {
 
         if (player.isOnFiringState()) {
             if (!onCooldown) {
-                b.add(new PlayerBullet(player.getX() - 10, player.getY(), 10, 270, 500, 100));
+                b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 100));
+                b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 100));
+                b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 100));
 
                 onCooldown = true;
                 Timer timer = new Timer();
