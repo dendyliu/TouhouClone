@@ -1,9 +1,11 @@
 
+import Model.Battlefield;
+import Model.Boss;
 import Model.Event.*;
+import Model.Player;
+
 import javax.swing.*;
 import java.awt.*;
-import Model.*;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -81,7 +83,7 @@ public class Main {
 			}
 
 			for (int i = 0; i < 10; ++i) {
-				scheduledPool.schedule(new ShotgunEvent(b, 4, 60f, 60f, 4, 100), t, TimeUnit.MILLISECONDS);
+				scheduledPool.schedule(new ShotgunEvent(b, 4, 60f, 4, 100), t, TimeUnit.MILLISECONDS);
 				t += 500;
 			}
 		});
