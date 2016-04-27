@@ -23,9 +23,9 @@ public class PlayerFiringEvent extends Event {
         if (player.isOnFiringState()) {
             long tmp = new Date().getTime() - lastShotTime;
             if (tmp > cooldown) {
-                b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 100));
-                b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 100));
-                b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 100));
+                b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 5));
+                b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 5));
+                b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 5));
 
                 lastShotTime = new Date().getTime();
 
