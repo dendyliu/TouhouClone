@@ -53,9 +53,9 @@ public class Battlefield extends JPanel {
 	
 	public void add(Movable m){
 		if( m instanceof Boss )
-			boss = m;
+			boss = (Boss) m;
 		else if( m instanceof Player )
-			player = m;
+			player = (Player) m;
 
 		mList.add(m);
 	}
@@ -74,7 +74,7 @@ public class Battlefield extends JPanel {
 		return player;
 	}
 	
-	public void update(float dt){
+	public synchronized void update(float dt){
 		// updates Movable
 		for (int i = 0; i < mList.size(); ++i) {
 			Movable it = mList.get(i);
