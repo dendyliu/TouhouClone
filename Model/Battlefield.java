@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.Vector;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 
 public class Battlefield extends JPanel {
@@ -31,13 +29,11 @@ public class Battlefield extends JPanel {
 		frame.setLayout(new BorderLayout());
 		frame.add(this, BorderLayout.CENTER);
 
-
 		Boss boss = new Boss(200, 200, 2000);
 		add(boss);
 		Player player = new Player(200, 500);
 		add(player);
 		Runnable task2 = () -> frame.addKeyListener(player);
-
 		new Thread(task2).start();
 
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -108,7 +104,7 @@ public class Battlefield extends JPanel {
 				Movable second = mList.get(k);
 				if( second.isDead() ) continue;
 
-				if( Math.sqrt(getDistance(first,second)) < first.getRadius() + second.getRadius()){
+				if (Math.sqrt(getDistance(first, second)) < first.getRadius() + second.getRadius()) {
 					first.interact(second);
 					if( first.isAlive() && second.isAlive() ){
 						second.interact(first);
