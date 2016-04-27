@@ -21,6 +21,8 @@ public class Boss extends Movable {
 		float t = currentT * timeFactor;
 		x = (float) ((a*Math.sqrt(2)*Math.cos(t)) / (Math.sin(t)*Math.sin(t) +1) + initialX);
 		y = (float) ((a*Math.sqrt(2)*Math.cos(t)*Math.sin(t)) / (Math.sin(t)*Math.sin(t) +1)) + initialY;
+		
+		if( getHealth() < 0 ) forceKill();
 	}
 	
 	public int getHealth(){
