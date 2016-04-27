@@ -25,20 +25,15 @@ public class PlayerFiringEvent extends Event {
         Player player = b.getPlayer();
 
         if (player.isOnFiringState()) {
+            System.out.println(onCooldown);
             if (!onCooldown) {
                 b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 5));
                 b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 5));
                 b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 5));
 
                 onCooldown = true;
-
-				ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-                scheduler.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        onCooldown = false;
-                    }
-                }, cooldown, TimeUnit.MILLISECONDS);
+                ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(1);
+                scheduledPool.schedule(() -> onCooldown = false, cooldown, TimeUnit.MILLISECONDS);
             }
         }
     }
