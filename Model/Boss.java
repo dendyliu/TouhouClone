@@ -17,8 +17,10 @@ public class Boss extends Movable {
 	public void update(float dt){
 		currentT += dt;
 		float a = 100;
-		x = (float) ((a*Math.sqrt(2)*Math.cos(currentT)) / (Math.sin(currentT)*Math.sin(currentT) +1) + initialX);
-		y = (float) ((a*Math.sqrt(2)*Math.cos(currentT)*Math.sin(currentT)) / (Math.sin(currentT)*Math.sin(currentT) +1)) + initialY;
+		float timeFactor = 0.5f;
+		float t = currentT * timeFactor;
+		x = (float) ((a*Math.sqrt(2)*Math.cos(t)) / (Math.sin(t)*Math.sin(t) +1) + initialX);
+		y = (float) ((a*Math.sqrt(2)*Math.cos(t)*Math.sin(t)) / (Math.sin(t)*Math.sin(t) +1)) + initialY;
 	}
 	
 	public int getHealth(){
