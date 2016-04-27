@@ -17,9 +17,9 @@ public class RicochetEnemyBullet extends EnemyBullet {
 
     @Override
     public void update(float dt) {
-        if (angle < 0)
+        while (angle < 0)
             angle += 360;
-        if (angle > 360)
+        while (angle > 360)
             angle -= 360;
 
         if (leftBarrier + barrierRadius > x) {
