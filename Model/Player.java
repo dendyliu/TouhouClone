@@ -8,7 +8,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by Candra Ramsi on 4/24/16.
+ * Player class
+ * This class represent player
+ * @author Anthony on 4/24/16.
  */
 
 public class Player extends Movable implements KeyListener {
@@ -17,7 +19,11 @@ public class Player extends Movable implements KeyListener {
 	private boolean onFiringState;
 	private boolean justDamaged;
 	private boolean visible;
-	
+	/*
+	*Player Constructor
+        *@param x posisition player in coordinat x
+        *@param y posisition player in coordinat y
+         */   
 	public Player(int x, int y){
 		super(x, y, 5, 0, 100);
 
@@ -27,15 +33,21 @@ public class Player extends Movable implements KeyListener {
 		justDamaged = false;
 		visible = true;
 	}
-
+        /*Return true if player is visible
+        *@return boolean contain visible
+        */
 	public boolean isVisible() {
 		return visible;
 	}
-
+        /*Return true if player is on firing
+        * @return boolean contain isOnFiringState
+        */
 	public boolean isOnFiringState() {
 		return onFiringState;
 	}
-	
+	/**
+        * {@inheritDoc}
+        */	
 	public void update(float dt){
 		onFiringState = currentKeyPressed.contains(' ');
 		if (currentKeyPressed.contains('w')) {
@@ -51,7 +63,9 @@ public class Player extends Movable implements KeyListener {
 			x += speed * dt;
 		}
 	}
-	
+	/*
+        * Fix coodinate posisition of player
+        */
 	public void fixCoordinate(int boundWidth, int boundHeight){
 		if( x < 0 ) 
 			x = 0;
@@ -67,7 +81,9 @@ public class Player extends Movable implements KeyListener {
 	public int getHealth(){
 		return health;
 	}
-	
+	/**
+        * {@inheritDoc}
+        */	
 	public void interact(Movable m){
 		if (m instanceof EnemyBullet || m instanceof Boss ) {
 			if (!justDamaged) {
@@ -104,17 +120,23 @@ public class Player extends Movable implements KeyListener {
 			}
 		}
 	}
-
+        /**
+        * {@inheritDoc}
+        */	
 	@Override
 	public void keyTyped(KeyEvent e) {
 
 	}
-
+        /**
+        * {@inheritDoc}
+        */	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		currentKeyPressed.add(e.getKeyChar());
 	}
-
+        /**
+        * {@inheritDoc}
+        */	
 	@Override
 	public void keyReleased(KeyEvent e) {
 		currentKeyPressed.remove(e.getKeyChar());

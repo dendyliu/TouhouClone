@@ -5,7 +5,9 @@ import Model.Boss;
 import View.Battlefield;
 
 /**
- * Created by Anthony on 4/26/16.
+ * Raining Event Class
+ * This class will handle the Raining Event.
+ * @author Anthony on 4/26/16.
  */
 
 
@@ -15,7 +17,14 @@ public class RainingEvent extends Event {
     private final float speed;
     private float acceleration;
     private int delay;
-
+     /**
+        * RainingEvent Constuctor
+        * @param s object that do the event
+        * @param count count the raining bullet
+        * @param delay time delay for raining event
+        * @param speed speed of raining bullet move
+        * @param acceleration acceleration of raining bullet move
+        */
     public RainingEvent(Object s, int count, int delay, float speed, float acceleration) {
         super(s);
         this.count = count;
@@ -23,7 +32,9 @@ public class RainingEvent extends Event {
         this.delay = delay;
         this.speed = speed;
     }
-
+    /*
+    * Run the Raining Event
+    */
     public void run() {
         Battlefield b = (Battlefield) self;
         Boss boss = b.getBoss();

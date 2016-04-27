@@ -1,7 +1,9 @@
 package Model;
 
 /**
- * Created by Candra Ramsi on 4/24/16.
+ * Movable class 
+ * This class represent the object that can move
+ * @author Candra Ramsi on 4/24/16.
  */
 public abstract class Movable {
 	private boolean alive;
@@ -10,7 +12,14 @@ public abstract class Movable {
 	protected float radius;
 	protected float angle; // in degree
 	protected float speed; // in pixel
-	
+        /*
+	*Movable Constructor
+        *@param x posisition object in coordinat x
+        *@param y posisition object in coordinat y
+        *@param radius radius of object
+        *@param angle angle of object
+        *@param speed speed of object
+         */   
 	public Movable(int x, int y, int radius, float angle, float speed){
 		alive = true;
 		
@@ -20,13 +29,19 @@ public abstract class Movable {
 		this.angle = angle;
 		this.speed = speed;
 	}
-
+        /*
+        * Do the update 
+        * @param dt delay time to do the update
+        */
 	public void update(float dt){
 		double tang = Math.toRadians(angle);
 		x += Math.cos(tang) * speed * dt;
 		y += Math.sin(tang) * speed * dt;
 	}
-	
+	/*
+        * Interaction between movable object
+        * @param m Movable object
+        */
 	public abstract void interact(Movable m);
 
 	public void forceKill(){ alive = false; }

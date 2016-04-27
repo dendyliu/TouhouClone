@@ -8,11 +8,15 @@ package View.MainMenu;
 import javax.swing.*;
 
 /**
- * @author Alif
+ * Menu class
+ * This class is a class that will display the starting menu
+ * @author Alif on 4/27/16
  */
 public class Menu {
     JPanel panel1;
-
+    /*
+     * Menu Constructor
+     */
     public Menu() {
         panel1 = new JPanel();
         JFrame frame = new JFrame();

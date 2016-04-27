@@ -6,7 +6,9 @@ import View.Battlefield;
 
 
 /**
- * Created by Anthony on 4/26/16.
+ * Ricochet Flower Event class
+ * This class will handel Ricochet Flower Event.
+ * @author Anthony on 4/26/16.
  */
 
 public class RicochetFlowerEvent extends Event {
@@ -16,7 +18,15 @@ public class RicochetFlowerEvent extends Event {
     private final float startingAngle;
     private int leftBarrier;
     private int rightBarrier;
-
+    /**
+        * RicochetFlowerEvent Constuctor
+        * @param s object that do the event
+        * @param spreadCount count spread the RicochetFlower bullet
+        * @param startingAngle starting angle for RicochetFlower event
+        * @param speed speed of RicochetFlower bullet move
+        * @param leftBarrier leftBarrier of flower
+        * @param rightBarrier rightBarrier of flwoer
+        */
     public RicochetFlowerEvent(Object s, int spreadCount, float startingAngle, float speed, int leftBarrier, int rightBarrier) {
         super(s);
         this.spreadCount = spreadCount;
@@ -25,7 +35,9 @@ public class RicochetFlowerEvent extends Event {
         this.leftBarrier = leftBarrier;
         this.rightBarrier = rightBarrier;
     }
-
+    /*
+    * Run the RicochetFlower Event
+    */
     public void run() {
         Battlefield b = (Battlefield) self;
         Boss boss = b.getBoss();

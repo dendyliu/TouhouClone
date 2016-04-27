@@ -3,19 +3,29 @@ package Controller.Event;
 import Model.AcceleratingEnemyBullet;
 import Model.Boss;
 import View.Battlefield;
-
 /**
- * Created by Anthony on 4/26/16.
+ * Boomerang Shotgun Event
+ * This class will handle about BoomerangShotgun
+ * @author Anthony on 4/26/16.
  */
 
 public class BoomerangShotgunEvent extends Event {
-
+     
     private final int spreadCount;
     private final float speed;
     private final float directionAngle;
     private final float widthAngle;
     private final int layerCount;
-
+    /**
+     * BoomerangShotgunEvent constructor
+     * @param s coordinate alien spawns
+     * @param spreadCount count from spread bullet
+     * @param directionAngle angle from direction of the bullets fired
+     * @param widthAngle width from angle of the bulltes fired
+     * @param layerCount count  from layer
+     * @param speed speed for bullet
+     * 
+     */
     public BoomerangShotgunEvent(Object s, int spreadCount, float directionAngle, float widthAngle, int layerCount, float speed) {
         super(s);
         this.spreadCount = spreadCount;
@@ -24,7 +34,9 @@ public class BoomerangShotgunEvent extends Event {
         this.widthAngle = widthAngle;
         this.layerCount = layerCount;
     }
-
+     /*
+     * Run the Boomerang Shotgun
+     */
     public void run() {
         Battlefield b = (Battlefield) self;
         Boss boss = b.getBoss();

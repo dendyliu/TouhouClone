@@ -5,7 +5,9 @@ import Model.EnemyBullet;
 import View.Battlefield;
 
 /**
- * Created by Anthony on 4/26/16.
+ * Shotgun Event Class
+ * This class will handle the Shotgun Event
+ * @author Anthony on 4/26/16.
  */
 
 
@@ -15,7 +17,14 @@ public class ShotgunEvent extends Event {
     private final float speed;
     private final float widthAngle;
     private final int layerCount;
-
+     /**
+        * ShotgunEvent Constuctor
+        * @param s object that do the event
+        * @param spreadCount count spread the Shotgun bullet
+        * @param widthAngle width angle for Shotgun bullet
+        * @param layerCount count the layer for ShotgunEvent
+        * @param speed speed of Shotgun bullet move
+        */
     public ShotgunEvent(Object s, int spreadCount, float widthAngle, int layerCount, float speed) {
         super(s);
         this.spreadCount = spreadCount;
@@ -23,7 +32,9 @@ public class ShotgunEvent extends Event {
         this.widthAngle = widthAngle;
         this.layerCount = layerCount;
     }
-
+    /*
+    * Run the Shotgun 
+    */
     public void run() {
         Battlefield b = (Battlefield) self;
         Boss boss = b.getBoss();

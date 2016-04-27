@@ -7,20 +7,28 @@ import View.Battlefield;
 import java.util.Date;
 
 /**
- * Created by Anthony on 4/26/16.
+ * Player Firing Event class
+ * This class will handle bullet firing from player
+ *  @author Candra Ramsi on 4/24/16.
  */
 
 
 public class PlayerFiringEvent extends Event {
     private long cooldown; //milliseconds
     private long lastShotTime;
-
+    /**
+     * PlayerFiringEvent Constuctor
+     * @param s object that do the event
+     * @param cooldown delay time for firing the bullet
+     */
     public PlayerFiringEvent(Object s, float cooldown) {
         super(s);
         this.cooldown = new Float(cooldown * 1000).intValue();
         lastShotTime = new Date().getTime() - this.cooldown;
     }
-
+    /*
+    * Run the Firing 
+    */
     public void run() {
         Battlefield b = (Battlefield) self;
         Player player = b.getPlayer();

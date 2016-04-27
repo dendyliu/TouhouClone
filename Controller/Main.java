@@ -1,5 +1,9 @@
 package Controller;
-
+/**
+ * Main class
+ * This class will handle the main program and run the entire  class
+ * @author Anthony on 4/26/16.
+ */
 import Controller.Event.*;
 import Model.Boss;
 import Model.Player;
@@ -16,7 +20,9 @@ public class Main {
 	static JFrame frame;
 	static Battlefield battlefield;
 	static ScheduledExecutorService scheduledPool;
-
+        /*
+        * Start the game
+        */
 	public static void startGame(){
 		frame = new JFrame("Touhou Clone");
 		
@@ -41,7 +47,9 @@ public class Main {
 		
 		scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(battlefield, 0.2f), 30, 20, TimeUnit.MILLISECONDS);
 	}
-	
+	/*
+        * Initialize bullet 
+        */
 	public static void initBullets(){
 		int t = 0;
 		t += 1000;
@@ -95,7 +103,9 @@ public class Main {
 		
 		scheduledPool.schedule(() -> initBullets(), t, TimeUnit.MILLISECONDS );
 	}
-	
+	 /*
+        * Run the program
+        */
 	public static void main(String[] args){
 		Menu menu = new Menu();
 

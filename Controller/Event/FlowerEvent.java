@@ -5,7 +5,9 @@ import Model.EnemyBullet;
 import View.Battlefield;
 
 /**
- * Created by Candra Ramsi on 4/25/16.
+ * Flower Event class
+ * This class will handle Flower Event.
+ * @author Candra Ramsi on 4/25/16.
  */
 
 public class FlowerEvent extends Event {
@@ -13,14 +15,22 @@ public class FlowerEvent extends Event {
 	private final int spreadCount;
 	private final float speed;
 	private final float startingAngle;
-
+        /**
+        * FlowerEvent Constuctor
+        * @param s object that do the event
+        * @param spreadCount count the spread of flower bullet
+        * @param startingAngle start angle from the flower spread
+        * @param speed speed of flower bullet move
+        */
 	public FlowerEvent(Object s, int spreadCount, float startingAngle, float speed){
 		super(s);
 		this.spreadCount = spreadCount;
 		this.speed = speed;
 		this.startingAngle = startingAngle;
 	}
-	
+	/*
+        * Run the Flower Event
+        */
 	public void run(){
 		Battlefield b = (Battlefield) self;
 		Boss boss = b.getBoss();

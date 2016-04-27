@@ -7,7 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.Vector;
-
+/*
+* Battlefield Class
+* This class will display Battle Field , place where player will be play
+* @author Candra Ramsi on 4/24/16     
+*/
 
 public class Battlefield extends JPanel {
 	public final int width;
@@ -16,7 +20,10 @@ public class Battlefield extends JPanel {
 	private AssetLoader assetLoader;
 	private Boss boss;
 	private Player player;
-	
+	/*
+        * BattleField Constructor
+        * @param frame frame of Battle Field
+        */
 	public Battlefield(JFrame frame) {
 		width = frame.getWidth();
 		height = frame.getHeight();
@@ -32,25 +39,36 @@ public class Battlefield extends JPanel {
 		timer.start();
 
 	}
-
+        /*
+        * Return distance between movable object
+        * @return integer containing distance between mmovable object
+        */
 	private static int getDistance(Movable a, Movable b){
 		int dx = a.getX() - b.getX();
 		int dy = a.getY() - b.getY();
 		return dx*dx+dy*dy;
 	}
 
-		
+	/*
+        * Return width of Battlefield
+        * @return int containing width of Battlefield
+        */	
 	@Override
 	public int getWidth() {
 		return width;
 	}
-	
+	/*
+        * Return true if coordinat x and y in battlefield
+        * @return int containing coordinat x and y that availabel in battlefield
+        */
 	public boolean isInField(int x, int y) {
 		return x >= 0 && y >= 0 && x <= getWidth() && y <= getHeight();
 
 	}
 	
-		
+	/*
+        * Add movable object to battlefield
+        */	
 	public void add(Movable m){
 		if( m instanceof Boss )
 			boss = (Boss) m;
@@ -59,25 +77,36 @@ public class Battlefield extends JPanel {
 
 		mList.add(m);
 	}
-	
+	/*
+        * Return Boss in Battlefield
+        * @return Boss containing Boss in Battlefield
+        */
 	public Boss getBoss() throws Error {
 		if( boss == null )
 			throw new Error("no boss");
 
 		return boss;
 	}
-
+        /*
+        * Return Player in Battlefield
+        * @return Player containing Player in Battlefield
+        */
 	public Player getPlayer() throws Error {
 		if( player == null )
 			throw new Error("no player");
 
 		return player;
 	}
-	
+	/*
+        * Return true if game is over
+        * @return boolean containing game over
+        */
 	public boolean isGameOver(){
 		return getPlayer().isDead() || getBoss().isDead();
 	}
-
+        /*
+        * Do the update
+        */
 	public synchronized void update(float dt){
 		if( isGameOver() ){
  			return;	
@@ -120,7 +149,9 @@ public class Battlefield extends JPanel {
 		}
 	}
 	
-
+        /*
+        * paint the components in battlefield
+        */
 	@Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
