@@ -7,6 +7,10 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Created by Candra Ramsi on 4/24/16.
+ */
+
 public class Player extends Movable implements KeyListener {
 	private int health;
 	private Set<Character> currentKeyPressed;

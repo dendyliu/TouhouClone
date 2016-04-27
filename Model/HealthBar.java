@@ -7,7 +7,7 @@ package Model;
 import javax.swing.*;
 /**
  *
- * @author Asus X550ZE
+ * @author Dendy
  */
 public class HealthBar {
      private JLabel Health_Panel;

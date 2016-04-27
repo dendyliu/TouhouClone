@@ -1,7 +1,8 @@
 package Model;
 
-// Author : Candra Ramsi
-
+/**
+ * Created by Candra Ramsi on 4/24/16.
+ */
 public abstract class Movable {
 	private boolean alive;
 	protected float x;

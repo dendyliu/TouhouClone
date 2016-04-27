@@ -4,6 +4,11 @@ import Model.Battlefield;
 import Model.Boss;
 import Model.EnemyBullet;
 
+/**
+ * Created by Anthony on 4/26/16.
+ */
+
+
 public class ShotgunEvent extends Event {
 
     private final int spreadCount;

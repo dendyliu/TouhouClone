@@ -1,4 +1,7 @@
 package Model;
+/**
+ * Created by Anthony on 4/26/16.
+ */
 
 public class PlayerBullet extends Bullet {
 	

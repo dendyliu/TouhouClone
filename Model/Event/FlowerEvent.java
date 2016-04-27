@@ -4,6 +4,10 @@ import Model.Battlefield;
 import Model.Boss;
 import Model.EnemyBullet;
 
+/**
+ * Created by Candra Ramsi on 4/25/16.
+ */
+
 public class FlowerEvent extends Event {
 
 	private final int spreadCount;

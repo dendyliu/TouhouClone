@@ -4,6 +4,11 @@ import Model.AcceleratingEnemyBullet;
 import Model.Battlefield;
 import Model.Boss;
 
+/**
+ * Created by Anthony on 4/26/16.
+ */
+
+
 public class RainingEvent extends Event {
 
     private final int count;

@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Created by Candra Ramsi on 4/24/16.
+ */
 
 public class EnemyBullet extends Bullet {
 
