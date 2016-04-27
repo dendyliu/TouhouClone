@@ -69,7 +69,7 @@ public class Player extends Movable implements KeyListener {
 	}
 	
 	public void interact(Movable m){
-		if (m instanceof EnemyBullet) {
+		if (m instanceof EnemyBullet || m instanceof Boss ) {
 			if (!justDamaged) {
 				justDamaged = true;
 				Timer blinkingTimer = new Timer();
@@ -90,9 +90,15 @@ public class Player extends Movable implements KeyListener {
 					}
 				}, 1000);
 
-				EnemyBullet b = (EnemyBullet) m;
-				health -= b.damage;
-				b.forceKill();
+                                if( m instanceof EnemyBullet ){
+                                    EnemyBullet b = (EnemyBullet) m;
+                                    health -= b.damage;
+                                    b.forceKill();
+                                }
+                                else { // boss
+                                    health -= 20;
+                                }
+                                
 				if (health < 0)
 					forceKill();
 			}
