@@ -63,29 +63,30 @@ public class Battlefield extends JPanel {
 		add( boss );
 		
 		scheduledPool.scheduleWithFixedDelay(new UpdateEvent(this,0.02f), 30, 20, TimeUnit.MILLISECONDS);
-		
 		int t = 0;
+/*		
 		for( int i = 0; i < 10; ++ i ){
-			t += 200;
-			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,100), t, TimeUnit.MILLISECONDS);
+			t += 500;
+			scheduledPool.schedule(new FlowerEvent(this,10,10.f,100), t, TimeUnit.MILLISECONDS);
 		}
 		
 
 		for( int i = 0; i < 10; ++ i ){
-			t += 200;
-			scheduledPool.schedule(new FlowerEvent(this,10,-i*10.f,100), t, TimeUnit.MILLISECONDS);
+			t += 500;
+			scheduledPool.schedule(new FlowerEvent(this,10,-10.f,100), t, TimeUnit.MILLISECONDS);
 		}
 		
 		for( int i = 0; i < 10; ++ i ){
-			t += 200;
-			scheduledPool.schedule(new FlowerEvent(this,10,i*10.f,100), t, TimeUnit.MILLISECONDS);
+			t += 500;
+			scheduledPool.schedule(new FlowerEvent(this,10,10.f,100), t, TimeUnit.MILLISECONDS);
 		}
+*/
 
 		t += 1000;
 		
-		for( int i = 0; i < 10; ++ i ){
-			scheduledPool.schedule(new FlowerEvent(this,10,0.f,100 + i * 10), t, TimeUnit.MILLISECONDS);
-			t += 100;
+		for( int i = 0; i < 200; ++ i ){
+			scheduledPool.schedule(new FlowerEvent(this,10,10*i + 0.f,100), t, TimeUnit.MILLISECONDS);
+			t += 200;
 		}
 	}
 	
@@ -149,11 +150,15 @@ public class Battlefield extends JPanel {
             if( it.isDead() ) continue;
 
             if( it instanceof Boss )
-                g.drawImage(assetLoader.getBossImage(), x, y,85,127,null);
+                g.drawImage(assetLoader.getBossImage(), x - 42, y - 63,85,127,null);
             else if( it instanceof Player )
-                g.drawImage(assetLoader.getPlayerImage(), x, y,65,125,null);
-            else if( it instanceof Bullet )
-                g.drawImage(assetLoader.getBulletImage(0), x, y, null );
+                g.drawImage(assetLoader.getPlayerImage(), x - 32, y - 62,65,125,null);
+            else if( it instanceof Bullet ){
+				Bullet b = (Bullet) it;
+				int rad = new Float(b.getRadius()).intValue();
+				
+                g.drawImage( assetLoader.getBulletImage(0), x - rad, y - rad,rad*2,rad*2,null );
+			}
         }
         
     }
