@@ -16,9 +16,14 @@ public class Battlefield extends JPanel {
 	private Vector<Movable> mList;
 	private AssetLoader assetLoader;
 	private JFrame frame;
+	private Boss boss;
+	private Player player;
+	
 	public Battlefield(JFrame frame) {
 		width = frame.getWidth();
 		height = frame.getHeight();
+		boss = null;
+		player = null;
 		
 		mList = new Vector<>();
 		assetLoader = new AssetLoader();
@@ -47,27 +52,26 @@ public class Battlefield extends JPanel {
 	}
 	
 	public void add(Movable m){
+		if( m instanceof Boss )
+			boss = m;
+		else if( m instanceof Player )
+			player = m;
+
 		mList.add(m);
 	}
 	
 	public Boss getBoss() throws Error {
-		for( Movable m : mList ){
-			if( m instanceof Boss )
-				return (Boss)m;
-		}
-		
-		
-		throw new Error("no boss");
+		if( boss == null )
+			throw new Error("no boss");
+
+		return boss;
 	}
 
 	public Player getPlayer() throws Error {
-		for (Movable m : mList) {
-			if (m instanceof Player)
-				return (Player) m;
-		}
+		if( player == null )
+			throw new Error("no player");
 
-
-		throw new Error("no player");
+		return player;
 	}
 	
 	public void update(float dt){
