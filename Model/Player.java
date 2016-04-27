@@ -48,6 +48,18 @@ public class Player extends Movable implements KeyListener {
 		}
 	}
 	
+	public void fixCoordinate(int boundWidth, int boundHeight){
+		if( x < 0 ) 
+			x = 0;
+		else if( x >= boundWidth)
+			x = boundWidth - 1;
+		
+		if( y < 0 ) 
+			y = 0;
+		else if( y >= boundHeight )
+			y = boundHeight - 1;
+	}
+	
 	public int getHealth(){
 		return health;
 	}

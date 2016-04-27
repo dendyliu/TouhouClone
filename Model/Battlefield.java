@@ -94,6 +94,9 @@ public class Battlefield extends JPanel {
 			Movable it = mList.get(i);
 			it.update(dt);
 		}
+		
+		Player player = getPlayer();
+		player.fixCoordinate(getWidth(), getHeight());
 
 		
 		// interact when collide
