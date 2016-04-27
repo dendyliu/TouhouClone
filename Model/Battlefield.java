@@ -23,6 +23,7 @@ public class Battlefield extends JPanel {
 
 
 	public Battlefield() {
+
 		width = 600;
 		height = 800;
 		mList = new Vector<>();
@@ -53,22 +54,24 @@ public class Battlefield extends JPanel {
 			}
 		});
 
-		scheduledPool.scheduleWithFixedDelay(new UpdateEvent(this, 0.02f), 30, 20, TimeUnit.MILLISECONDS);
+		Battlefield b = this;
+		Timer timer = new Timer(20, e -> new UpdateEvent(b, 0.02f).run());
+		timer.start();
 		scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(this, 0.2f), 30, 20, TimeUnit.MILLISECONDS);
 
 		int t = 0;
 		t += 1000;
-//		for( int i = 0; i < 1; ++ i ){
-//			scheduledPool.schedule(new RainingEvent(this,5,400,0, 300), t, TimeUnit.MILLISECONDS);
-//			t += 4000;
-//		}
-//		for( int i = 0; i < 1; ++ i ){
-//			scheduledPool.schedule(new BoomerangShotgunEvent(this,4,60,60, 4, 250), t, TimeUnit.MILLISECONDS);
-//			t += 5000;
-//		}
+		for (int i = 0; i < 10; ++i) {
+			scheduledPool.schedule(new RainingEvent(this, 10, 50, 0, 300), t, TimeUnit.MILLISECONDS);
+			t += 500;
+		}
+		for (int i = 0; i < 5; ++i) {
+			scheduledPool.schedule(new BoomerangShotgunEvent(this, 4, 60, 60, 4, 250), t, TimeUnit.MILLISECONDS);
+			t += 500;
+		}
 
 		for (int i = 0; i < 1; ++i) {
-			scheduledPool.schedule(new RicochetFlowerEvent(this, 100, 50, 100, 0, getWidth()), t, TimeUnit.MILLISECONDS);
+			scheduledPool.schedule(new RicochetFlowerEvent(this, 100, 50, 100, 0, frame.getWidth()), t, TimeUnit.MILLISECONDS);
 			t += 5000;
 		}
 
@@ -144,9 +147,9 @@ public class Battlefield extends JPanel {
 	
 	public void update(float dt){
 		// updates Movable
-		for( Iterator<Movable> itr = mList.iterator(); itr.hasNext(); ){
-			Movable m = itr.next();
-			m.update(dt);
+		for (int i = 0; i < mList.size(); ++i) {
+			Movable it = mList.get(i);
+			it.update(dt);
 		}
 
 		
