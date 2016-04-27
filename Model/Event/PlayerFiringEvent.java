@@ -4,20 +4,16 @@ import Model.Battlefield;
 import Model.Player;
 import Model.PlayerBullet;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Date;
 
 public class PlayerFiringEvent extends Event {
     private long cooldown; //milliseconds
-    private boolean onCooldown;
+    private long lastShotTime;
 
     public PlayerFiringEvent(Object s, float cooldown) {
         super(s);
         this.cooldown = new Float(cooldown * 1000).intValue();
-        onCooldown = false;
+        lastShotTime = new Date().getTime() - this.cooldown;
     }
 
     public void run() {
@@ -25,15 +21,14 @@ public class PlayerFiringEvent extends Event {
         Player player = b.getPlayer();
 
         if (player.isOnFiringState()) {
-            System.out.println(onCooldown);
-            if (!onCooldown) {
-                b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 5));
-                b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 5));
-                b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 5));
+            long tmp = new Date().getTime() - lastShotTime;
+            if (tmp > cooldown) {
+                b.add(new PlayerBullet(player.getX() - 30, player.getY(), 10, 270, 500, 100));
+                b.add(new PlayerBullet(player.getX(), player.getY(), 10, 270, 500, 100));
+                b.add(new PlayerBullet(player.getX() + 30, player.getY(), 10, 270, 500, 100));
 
-                onCooldown = true;
-                ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(1);
-                scheduledPool.schedule(() -> onCooldown = false, cooldown, TimeUnit.MILLISECONDS);
+                lastShotTime = new Date().getTime();
+
             }
         }
     }

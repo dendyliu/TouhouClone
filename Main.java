@@ -11,7 +11,7 @@ public class Main {
 		java.awt.EventQueue.invokeLater(() -> {
 			Battlefield b = new Battlefield();
 			ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(1);
-			scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(b, 200), 30, 20, TimeUnit.MILLISECONDS);
+			scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(b, 0.2f), 30, 20, TimeUnit.MILLISECONDS);
 			int t = 0;
 			t += 1000;
 			for (int i = 0; i < 10; ++i) {
