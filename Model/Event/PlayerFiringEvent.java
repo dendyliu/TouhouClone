@@ -11,9 +11,9 @@ public class PlayerFiringEvent extends Event {
     private long cooldown; //milliseconds
     private boolean onCooldown;
 
-    public PlayerFiringEvent(Object s, long cooldown) {
+    public PlayerFiringEvent(Object s, float cooldown) {
         super(s);
-        this.cooldown = cooldown;
+        this.cooldown = new Float(cooldown * 1000).intValue();
         onCooldown = false;
     }
 
@@ -23,7 +23,7 @@ public class PlayerFiringEvent extends Event {
 
         if (player.isOnFiringState()) {
             if (!onCooldown) {
-                b.add(new PlayerBullet(player.getX() - 10, player.getY(), 10, 270, 100, 100));
+                b.add(new PlayerBullet(player.getX() - 10, player.getY(), 10, 270, 500, 100));
 
                 onCooldown = true;
                 Timer timer = new Timer();

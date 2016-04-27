@@ -47,14 +47,14 @@ public class Battlefield extends JPanel {
 
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent e) {
+			public void windowClosing(WindowEvent e) {	
 				super.windowClosing(e);
 				System.exit(0);
 			}
 		});
 
 		scheduledPool.scheduleWithFixedDelay(new UpdateEvent(this, 0.02f), 30, 20, TimeUnit.MILLISECONDS);
-		scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(this, 200), 30, 20, TimeUnit.MILLISECONDS);
+		scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(this, 0.2f), 30, 20, TimeUnit.MILLISECONDS);
 
 		int t = 0;
 		t += 1000;
@@ -191,8 +191,12 @@ public class Battlefield extends JPanel {
             if( it instanceof Boss )
                 g.drawImage(assetLoader.getBossImage(), x - 42, y - 63,85,127,null);
 			else if (it instanceof Player) {
-				if (((Player) it).isVisible())
+				Player p = ((Player) it);
+				if (p.isVisible()){
+					int rad = new Float(p.getRadius()).intValue();
 					g.drawImage(assetLoader.getPlayerImage(), x - 32, y - 64, 65, 125, null);
+					g.drawImage( assetLoader.getBulletImage(2), x - rad, y - rad,rad*2,rad*2,null );
+				}
 			}
 			else if (it instanceof EnemyBullet){
 				Bullet b = (Bullet) it;
