@@ -17,6 +17,7 @@ import java.net.URL;
 public class AssetLoader {
 	private BufferedImage bossImage;
 	private BufferedImage playerImage;
+	private BufferedImage backgroundImage;
 	private BufferedImage[] bulletImage;
 	/*
         *AssetLoader Constructor
@@ -31,6 +32,7 @@ public class AssetLoader {
 			bulletImage[0] = ImageIO.read(new File(url.getPath()+"/Bullet1.png"));
 			bulletImage[1] = ImageIO.read(new File(url.getPath()+"/Bullet2.png"));
 			bulletImage[2] = ImageIO.read(new File(url.getPath()+"/Bullet3.png"));
+			backgroundImage = ImageIO.read(new File(url.getPath() + "/background.jpg"));
 			
 			
 		} catch (IOException ex) {
@@ -52,6 +54,14 @@ public class AssetLoader {
         */
 	public BufferedImage getPlayerImage(){
 		return playerImage;
+	}
+
+	/*
+		* Return Image of Background
+        * @return BufferedImage contain Image of Background
+        */
+	public BufferedImage getBackgroundImage() {
+		return backgroundImage;
 	}
 	/*
         * Return Image of Bullet

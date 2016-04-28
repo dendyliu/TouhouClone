@@ -27,7 +27,7 @@ public class Menu {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         panel1.add(start);
         panel1.setLayout(null);
-        start.setBounds(175, 200, 100, 50);
+        start.setBounds(150, 200, 200, 50);
         frame.add(panel1);
         frame.setLocationRelativeTo(null);
     }

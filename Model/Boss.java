@@ -51,7 +51,6 @@ public class Boss extends Movable {
 			PlayerBullet b = (PlayerBullet) m;
 			health -= b.damage;
 			b.forceKill();
-			System.out.println(health);
 		}
 	}
 }

@@ -8,6 +8,7 @@ import Controller.Event.*;
 import Model.Boss;
 import Model.Player;
 import View.Battlefield;
+import View.HealthBar;
 import View.MainMenu.Menu;
 
 import javax.swing.*;
@@ -20,13 +21,15 @@ public class Main {
 	static JFrame frame;
 	static Battlefield battlefield;
 	static ScheduledExecutorService scheduledPool;
-        /*
-        * Start the game
-        */
+	static boolean gameOver = false;
+
+	/*
+	* Start the game
+    */
 	public static void startGame(){
 		frame = new JFrame("Touhou Clone");
-		
-		frame.setSize(600, 800);
+
+		frame.setSize(600, 700);
 		frame.setResizable(false);
 		frame.setVisible(true);
 
@@ -35,15 +38,56 @@ public class Main {
 		frame.add(battlefield, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+
 		Boss boss = new Boss(400, 200, 2000);
 		battlefield.add(boss);
 		Player player = new Player(200, 500);
 		battlefield.add(player);
-		
+
+		HealthBar healthBar = new HealthBar(boss.getHealth(), player.getHealth());
+		frame.add(healthBar.getBossBar(), BorderLayout.NORTH);
+		frame.add(healthBar.getPlayerBar(), BorderLayout.SOUTH);
+
 		Runnable task2 = () -> frame.addKeyListener(player);
 		new Thread(task2).start();
 
 		scheduledPool = Executors.newScheduledThreadPool(1);
+
+		scheduledPool.scheduleWithFixedDelay(new Runnable() {
+			@Override
+			public void run() {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						healthBar.getBossBar().setValue(boss.getHealth());
+						healthBar.getBossBar().setString("Boss HP: " + boss.getHealth());
+						healthBar.getPlayerBar().setValue(player.getHealth());
+						healthBar.getPlayerBar().setString("Player HP: " + player.getHealth());
+
+						if ((boss.getHealth() <= 0 || player.getHealth() <= 0) && !gameOver) {
+							gameOver = true;
+
+							JPanel panel1 = new JPanel();
+							JFrame frame = new JFrame();
+
+							JLabel label;
+							if (boss.getHealth() <= 0) {
+								label = new JLabel("You Win");
+							} else {
+								label = new JLabel("You Lose");
+							}
+							frame.setVisible(true);
+							frame.setSize(500, 500);
+							frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+							panel1.add(label);
+							panel1.setLayout(null);
+							label.setBounds(175, 200, 100, 50);
+							frame.add(panel1);
+							frame.setLocationRelativeTo(null);
+						}
+					}
+				});
+			}
+		}, 30, 20, TimeUnit.MILLISECONDS);
 		
 		scheduledPool.scheduleWithFixedDelay(new PlayerFiringEvent(battlefield, 0.2f), 30, 20, TimeUnit.MILLISECONDS);
 	}
@@ -100,8 +144,8 @@ public class Main {
 			scheduledPool.schedule(new ShotgunEvent(battlefield, 4, 60f, 4, 100), t, TimeUnit.MILLISECONDS);
 			t += 500;
 		}
-		
-		scheduledPool.schedule(() -> initBullets(), t, TimeUnit.MILLISECONDS );
+
+		scheduledPool.schedule(Main::initBullets, t, TimeUnit.MILLISECONDS);
 	}
 	 /*
         * Run the program

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.concurrent.Semaphore;
 /*
 * Battlefield Class
 * This class will display Battle Field , place where player will be play
@@ -20,11 +21,13 @@ public class Battlefield extends JPanel {
 	private AssetLoader assetLoader;
 	private Boss boss;
 	private Player player;
+	private Semaphore lock;
 	/*
         * BattleField Constructor
         * @param frame frame of Battle Field
         */
 	public Battlefield(JFrame frame) {
+		lock = new Semaphore(1);
 		width = frame.getWidth();
 		height = frame.getHeight();
 		boss = null;
@@ -68,14 +71,20 @@ public class Battlefield extends JPanel {
 	
 	/*
         * Add movable object to battlefield
-        */	
-	public void add(Movable m){
+        */
+	public synchronized void add(Movable m) {
+		try {
+			lock.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		if( m instanceof Boss )
 			boss = (Boss) m;
 		else if( m instanceof Player )
 			player = (Player) m;
 
 		mList.add(m);
+		lock.release();
 	}
 	/*
         * Return Boss in Battlefield
@@ -108,6 +117,11 @@ public class Battlefield extends JPanel {
         * Do the update
         */
 	public synchronized void update(float dt){
+		try {
+			lock.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		if( isGameOver() ){
  			return;	
 		}
@@ -147,16 +161,23 @@ public class Battlefield extends JPanel {
 				itr.remove();
 			}
 		}
+		lock.release();
 	}
 	
         /*
         * paint the components in battlefield
         */
 	@Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        
-        g.setColor(Color.white);
+	protected synchronized void paintComponent(Graphics g) {
+		try {
+			lock.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		super.paintComponent(g);
+
+		g.setColor(Color.white);
+		g.drawImage(assetLoader.getBackgroundImage(), 0, 0, null);
 
 		for (int i = 0; i < mList.size(); ++i) {
 			Movable it = mList.get(i);
@@ -188,8 +209,9 @@ public class Battlefield extends JPanel {
                 g.drawImage( assetLoader.getBulletImage(1), x - rad*3/2, y - rad*3/2,rad*6/2,rad*6/2,null );
 			}
 		}
-        
-    }
+		lock.release();
+
+	}
 	
 	
 }

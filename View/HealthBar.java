@@ -1,5 +1,7 @@
 package View;
 import javax.swing.*;
+import java.awt.*;
+
 /**
  * HealthBar class 
  * This class will display health bar in frame
@@ -7,26 +9,40 @@ import javax.swing.*;
  */
 public class HealthBar {
      private JLabel Health_Panel;
-     private JProgressBar Health_Bar;
+    private JProgressBar bossHealthBar;
+    private JProgressBar playerHealthBar;
      /*
      * HealthBar Constructor
      */
-     public HealthBar(){
+     public HealthBar(int bossHealth, int playerHealth) {
          Health_Panel=new JLabel();
-         Health_Bar = new JProgressBar();
          Health_Panel.setText("HP");
-         Health_Bar.setValue(100);
-   
          Health_Panel.setVisible(true);
-         Health_Bar.setVisible(true);
+
+         bossHealthBar = new JProgressBar(0, bossHealth);
+         bossHealthBar.setValue(bossHealth);
+         bossHealthBar.setVisible(true);
+         bossHealthBar.setStringPainted(true);
+         bossHealthBar.setForeground(Color.RED);
+         bossHealthBar.setString("Boss HP: " + bossHealth);
+
+         playerHealthBar = new JProgressBar(0, playerHealth);
+         playerHealthBar.setValue(playerHealth);
+         playerHealthBar.setVisible(true);
+         playerHealthBar.setStringPainted(true);
+         playerHealthBar.setString("Player HP: " + playerHealth);
      }
       /**
      * Return Health Bar
      * @return a JProgressBar containing of Health Bar 
      */
-     public JProgressBar getBar(){
-		 return Health_Bar;
-	 }
+      public JProgressBar getBossBar() {
+          return bossHealthBar;
+      }
+
+    public JProgressBar getPlayerBar() {
+        return playerHealthBar;
+    }
      /**
      * Return Health Panel
      * @return a JPanel containing of Health Panel 
@@ -38,7 +54,7 @@ public class HealthBar {
       * Minus the Health Bar if player get hit
       */
      public void HealthMinus(){
-         Health_Bar.setValue(Health_Bar.getValue()-5);
+         bossHealthBar.setValue(bossHealthBar.getValue() - 5);
      }
      
 }
